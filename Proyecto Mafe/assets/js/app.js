@@ -35,7 +35,7 @@ function startGame(){
         console.log(levelGame);
 
         for (let i=0; i < levelGame * 2; i++) {
-            contCards += '<div class="items"><img onclick="changesImg(this)" src="assets/images/Reverso.webp" data-src="'+cartas[i]+'" id="img_'+(i+1)+'"alt=""></div>';
+            contCards += crearCarta(cartas[i], i+1);
         }
 
         cardsContainer.innerHTML = contCards;
@@ -47,6 +47,11 @@ function changesImg(img) {
 
     if(bloqueado) return;
     if(img === primera) return;
+
+    if(estado!== "corriendo" &&estado != "corriendo"){
+        iniciarCronometro ();
+    }
+
     let newUrl = "./assets/images/" + img.dataset.src;
     img.src = newUrl;
     console.log(newUrl);
@@ -59,6 +64,41 @@ function changesImg(img) {
     segunda = img;
     
     comparar();    
+}
+
+function pausarCronometro() {
+    if (estado === "corriendo") {
+        clearInterval(intervalo);
+        estado = "pausado";
+
+        bloqueado = true; 
+    }
+    mostrarEstado();
+}
+
+function iniciarCronometro() {
+    if (estado !== "corriendo") {
+        estado = "corriendo";
+        
+        bloqueado = false; 
+
+        intervalo = setInterval(() => {
+            tiempo++;
+            actualizarCronometro();
+        }, 1000);
+    }
+    mostrarEstado();
+}
+
+function reiniciarCronometro() {
+    detenerCronometro();
+    tiempo = 0;
+    actualizarCronometro();
+    estado = "detenido";
+
+    startGame(); 
+    
+    mostrarEstado();
 }
 
 function comparar(){
@@ -164,6 +204,11 @@ function reiniciarCronometro() {
     estado = "reiniciado";
 
     mostrarEstado();
+
+    primera = null;
+    segunda = null;
+    bloqueado = false;
+    startGame();
 }
 
 // Mostrar estado en consola

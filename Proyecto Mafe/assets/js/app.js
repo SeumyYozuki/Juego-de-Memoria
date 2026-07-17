@@ -1,4 +1,54 @@
 // =======================
+// Iniciar Juego
+// =======================
+
+
+// Logica del juego
+
+// Boton Inicio
+
+const btnStart = document.getElementById("btn-start");
+btnStart.addEventListener("click", startGame);
+
+//Funciones
+
+function startGame(){    
+    const selectlevel = document.getElementById('levelGame');
+    const cardsContainer = document.getElementById('tablero');
+   
+    let levelGame = selectlevel.value;
+    let longCards = levelGame;
+    const imgText = '<div class="items"><img src="assets/images/Reverso.webp" alt=""></div>' 
+    let contCards = "";
+    let arrayImg =['img_1.webp', 'img_2.webp', 'img_3.webp', 'img_4.webp', 'img_5.webp', 'img_6.webp', 'img_7.webp', 'img_8.webp', 'img_9.webp', 'img_10.webp', 'img_11.webp', 'img_12.webp', 'img_13.webp', 'img_14.webp', 'img_15.webp', 'img_16.webp', 'img_17.webp', 'img_18.webp', 'img_19.webp', 'img_20.webp',]   
+
+    arrayImg.sort(() => Math.random()- 0.5);
+    let seleccion = arrayImg.slice(0, levelGame);
+    let cartas = seleccion.concat(seleccion);
+
+    cartas.sort(() => Math.random() - 0.5);
+
+    if(levelGame !=""){
+        console.log(levelGame);
+
+        for (let i=0; i < levelGame * 2; i++) {
+            contCards += '<div class="items"><img onclick="changesImg(this)" src="assets/images/Reverso.webp" data-src="'+cartas[i]+'" id="img_'+(i+1)+'"alt=""></div>';
+        }
+
+        cardsContainer.innerHTML = contCards;
+    }
+}
+
+function changesImg(img) {
+    console.log(img.dataset.src);
+
+    let newUrl = "./assets/images/" + img.dataset.src;
+    console.log(newUrl);
+
+    img.src = newUrl;
+}
+
+// =======================
 // CRONÓMETRO
 // =======================
 
@@ -99,28 +149,7 @@ btnReiniciar.addEventListener("click", reiniciarCronometro);
 // Mostrar 00:00:00 al abrir la página
 actualizarCronometro();
 
-// =======================
-// Iniciar Juego
-// =======================
 
-function startGame() {    
-    const selectlevel = document.getElementById('levelGame');
-    const cardsContainer = document.getElementById('grid-cards');
-    let levelGame = selectlevel.value;
-    
-    if (levelGame != ""){
-        cardsContainer.innerHTML ="";
-        changesImg(levelGame,cardsContainer);
-    }
-}
 
-function changesImg(level, cardsContainer) {
-    const arrayImg = ['Bayonetta.webp', 'Bowser.webp', 'Capitan Falcon.webp', 'Duck Hunt.webp', 'Fox.webp', 'Ivysaur.webp', 'Jigglypuff.webp', 'King Dedede.webp', 'Kirby.webp', 'Link.webp', 'Luigy.webp', 'Mega Man.webp', 'Mr. Game.webp', 'Pac-Man.webp', 'Pikachu.webp', 'Pit.webp', 'Ryu.webp', 'Samus.webp', 'Sonic.webp', 'Steve.webp'];
-    let textElements= '';
-    
-    for (let i = 0; i < level; i++) {
-        textElements +='<div class="item"><img onclick="validateSelectCard(this)" src="assets/images/' +arrayImg[i]+'" data-src="'+arrayImg[i]+'" alt=""></div>';;
-    }
-    cardsContainer.innerHTML = textElements;
-}
+
 

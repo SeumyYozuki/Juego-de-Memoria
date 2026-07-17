@@ -1,0 +1,67 @@
+<!DOCTYPE html> 
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Memory Game</title>
+        <link rel="stylesheet" href="./assets/css/styles.css">
+        <link rel="stylesheet" href="assets/css/components.css">            
+    </head>
+
+    <body>
+        <div class="contenido">                       
+             <main>
+                <h1 class="Titulo">Memory Game</h1>
+                <h2 class="Subtitulo">by: Seumy 🙂</h2> 
+
+                <section class="info">                  
+                    <div class="nivel">
+                        <label>Nivel</label>
+                        <select id="niveles">
+                            <optionvalue="">Selecciona un nivel</option>
+                            <option value="4">Fácil</option>
+                            <option value="6">Medio</option>
+                            <option value="8">Difícil</option>
+                            <option value="10">Experto</option>
+                        </select>
+                    </div>
+                </section>
+                
+                <section class="cronometro">
+                    <span id="tiempo">00:00</span>
+                    <div class="botones">
+                        <button id="iniciar">▶️</button>
+                        <button id="pausar">⏸️</button>
+                        <button id="reiniciar">🔄</button>
+                    </div>
+                </section> 
+
+                <section class="panel">
+                     <section class="tablero">
+
+                     </section>
+
+                     <aside class="ranking">
+                        <h3>Top 10</h3>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Nombre</th>
+                                    <th>Tiempo</th>
+                                    <th>Nivel</th>
+                                </tr>
+                            </thead>
+                            <tbody id="ranking-body">
+                            <!-- Aquí se llenará dinámicamente con JavaScript -->
+                            </tbody>
+                        </table>
+                    </aside>
+                </section>                               
+            </main> 
+        </div>
+
+        <script type="module" src="./assets/js/app.js" ></script>
+       
+    </body>
+</html>

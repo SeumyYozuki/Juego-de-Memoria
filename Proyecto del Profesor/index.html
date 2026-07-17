@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Memory Game - Sinapsis Lab</title>
+  <!-- Hojas de Estilos -->
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+</head>
+
+<body>
+
+<!-- The Navigation Bar component will be dynamically injected here -->
+
+  <div id="nav-component"></div>
+
+ <!-- Main View Container -->
+
+  <main class="main-container">
+
+<!-- VIEW 1: Game Board (Component View) -->
+    <section id="view-game" class="view-section">
+      <div class="controls-panel">
+        <div id="game-timer" class="timer">00:00:00</div>
+
+<!-- Difficulty Level Selector based on board rows and pairs -->
+        <div class="control-group">
+          <label for="difficulty-select"><strong>Dificultad:</strong></label>
+          <select id="difficulty-select">
+            <option value="2">Fácil (2 Parejas - 4 Cartas)</option>
+            <option value="4" selected>Medio (4 Parejas - 8 Cartas)</option>
+            <option value="6">Difícil (6 Parejas - 12 Cartas)</option>
+            <option value="8">Experto (8 Parejas - 16 Cartas)</option>
+            <option value="10">Leyenda (10 Parejas - 20 Cartas)</option>
+          </select>
+        </div>
+
+        <button id="btn-start" class="btn btn-start">START</button>
+        <button id="btn-restart" class="btn btn-restart">RESTART</button>
+      </div>
+
+      <div class="game-container">
+        <h1 class="game-title">MEMORAMA</h1>
+<!-- JS will dynamically render the card grid here -->
+        <div id="container-cards" class="cards-grid"></div>
+        <div id="container-result" class="result-message hidden"></div>
+      </div>
+    </section>
+
+    <!-- VIEW 2: Statistics -->
+
+    <section id="view-statistics" class="view-section hidden">
+      <h2>TOP 10 - Récords</h2>
+      <div class="stats-container">
+       <!-- Score table -->
+
+        <table class="stats-table">
+          <thead>
+            <tr>
+              <th>P</th>
+              <th>Nickname</th>
+              <th>Dificultad</th> 
+              <th>Time</th>
+              <th>Date</th>
+            </tr>
+          </thead>
+          <tbody id="stats-table-body">
+      <!-- Rows injected by JS -->
+
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+<!-- Floating/side registration form (Container Form) -->
+    <section id="container-form" class="form-section hidden">
+      <h3>¡Nuevo Récord!</h3>
+      <form id="score-form">
+        <div class="form-group">
+          <label for="nickname">Nickname:</label>
+          <input type="text" id="nickname" required maxlength="10" placeholder="Tu Apodo">
+        </div>
+        <button type="submit" class="btn btn-save">Guardar</button>
+      </form>
+    </section>
+
+  </main>
+
+<!-- The Footer component will be dynamically injected here -->
+  <footer id="footer-component"></footer>
+
+<!-- Modular Scripts -->
+  <script src="assets/js/components.js"></script>
+  <script src="assets/js/storage.js"></script>
+  <script src="assets/js/app.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Geist+Pixel&family=Playwrite+ID:wght@100..400&family=Yuyu+Short&display=swap"
+    rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/styles.css">
+
+  <title>IMAGE GALLERY</title>
+
+</head>
+
+<body>
+  <main class="main-container">
+    <section class="controls">
+      <div class="difficulty-level">
+        <label for="level-games">SELECT LEVEL</label>
+        <select name="" id="level-games">
+
+          <option value="" selected>Select Level</option>
+          <option value="4">1</option>
+          <option value="6">2</option>
+          <option value="8">3</option>
+          <option value="10">4</option>
+
+        </select>
+        <button class="btn-start" id="btn-start" onclick="startCards()"> Start Cards</button>
+      </div>
+    </section>
+    <section class="game-container">
+      <div class="grid-cards" id="grid-cards">
+        <label class="viewLoad">Load.....</label>
+        
+      </div>
+    </section>
+  </main>
+
+  <script src="assets/js/app.js"></script>
+</body>
+
+</html>

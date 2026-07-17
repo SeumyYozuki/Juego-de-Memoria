@@ -1,0 +1,161 @@
+/* ==========================================================================
+GLOBAL VARIABLES AND RESET
+   ========================================================================== */
+:root {
+    --bg-main: #f8fafc;
+    --text-dark: #0f172a;
+    --accent: #38bdf8;
+    --card-size: 120px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: var(--bg-main);
+    color: var(--text-dark);
+    min-height: 100vh;
+    padding-bottom: 60px; /* Margen para no chocar con el footer fijo */
+}
+
+/* ==========================================================================
+   STRUCTURAL DESIGN (MAIN LAYOUT)
+   ========================================================================== */
+.main-container {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    justify-content: center;
+}
+
+.view-section {
+    flex: 1;
+    min-width: 320px;
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
+}
+
+/* Utility classes to hide elements dynamically */
+.hidden {
+    display: none !important;
+}
+
+/* ==========================================================================
+   CONTROL PANEL AND TIMER
+   ========================================================================== */
+.controls-panel {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 2rem;
+    background: #f1f5f9;
+    padding: 1rem;
+    border-radius: 8px;
+}
+
+.timer {
+    font-size: 1.75rem;
+    font-weight: bold;
+    font-family: 'Courier New', Courier, monospace;
+    color: #0284c7;
+    background: #e0f2fe;
+    padding: 0.25rem 1rem;
+    border-radius: 6px;
+    border: 1px solid #bae6fd;
+}
+
+/* ==========================================================================
+   BUTTONS AND FORMS
+   ========================================================================== */
+.btn {
+    padding: 0.75rem 1.5rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.btn-start { background-color: #22c55e; color: white; }
+.btn-start:hover:not(:disabled) { background-color: #16a34a; }
+.btn-start:disabled { background-color: #cbd5e1; cursor: not-allowed; }
+
+.btn-restart { background-color: #ef4444; color: white; }
+.btn-restart:hover { background-color: #dc2626; }
+
+.btn-save { background-color: #3b82f6; color: white; width: 100%; margin-top: 1rem; }
+.btn-save:hover { background-color: #2563eb; }
+
+/* Side form */
+.form-section {
+    width: 300px;
+    background: #ffffff;
+    padding: 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
+    border: 2px solid #e2e8f0;
+    align-self: flex-start;
+}
+
+.form-group {
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.form-group input {
+    padding: 0.5rem;
+    border: 1px solid #cbd5e1;
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+/* ==========================================================================
+   STATISTICS TABLE (TOP 10)
+   ========================================================================== */
+.stats-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+}
+
+.stats-table th, .stats-table td {
+    padding: 0.75rem;
+    text-align: left;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.stats-table th {
+    background-color: #f8fafc;
+    color: #64748b;
+}
+
+/* Result messages */
+.result-message {
+    margin-top: 1.5rem;
+    padding: 1rem;
+    background-color: #dcfce7;
+    color: #15803d;
+    border-radius: 6px;
+    text-align: center;
+    border: 1px solid #bbf7d0;
+}
+.badge-diff {
+    background-color: #e2e8f0;
+    color: #475569;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    font-weight: bold;
+}

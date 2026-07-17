@@ -1,0 +1,139 @@
+/**
+ * Styles for the Chonometer component
+ */
+:root {
+  --bg-main: #f8fafc;
+  --text-dark: #0f172a;
+  --accent: #38bdf8;
+  --card-size: 120px;
+  --primary-color: #38bdf8;
+  --secondary-color: #f1f5f9;
+  --card-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
+  --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f0f2f5;
+}
+#chonometer-display {
+  font-size: 3rem;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 25px;
+  letter-spacing: 2px;
+}
+
+.main-container {
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: center;
+}
+
+.chonometer-container {
+  flex: 1;
+  min-width: 320px;
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: var(--card-shadow);
+}
+
+.chonometer-title {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  text-align: center;
+  color: var(--text-dark);
+}
+
+.chonometer-display {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: var(--text-dark);
+  text-align: center;
+  font-size: 3em;
+}
+
+.chonometer-display span {
+  font-weight: bold;
+  color: var(--accent);
+
+}
+
+.chonometer-controls {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 2rem;
+  background: var(--secondary-color);
+  padding: 1rem;
+}
+
+.chonometer-button {
+  background: var(--primary-color);
+  color: #ffffff;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  text-transform: uppercase;
+}
+
+.main-footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background-color: var(--secondary-color);
+  text-align: center;
+  padding: 1rem;
+  box-shadow: var(--card-shadow);
+}
+
+.chonometer-button:hover {
+  background: #0ea5e9;
+}
+
+.button-start {
+  background: #10b981;
+}
+
+.button-start:hover {
+  background: #059669;
+}
+
+.button-start:disabled {
+  background: #6ee7b7;
+  cursor: not-allowed;
+}
+
+.button-reset {
+  background: #ef4444;
+}
+
+.button-reset:hover {
+  background: #dc2626;
+}
+
+.button-pause {
+  background: #2002ff;
+}
+
+.button-pause:hover {
+  background: #0f0458
+}

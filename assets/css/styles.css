@@ -1,0 +1,95 @@
+body{    
+    background-image: url('../images/Fondo.webp');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;    
+}
+
+.Titulo {
+    text-align: center;
+    color: rgb(1, 2, 82);
+    font-weight: bold;       
+}
+
+.Subtitulo {
+    text-align: center;
+    color: rgb(155, 76, 2);
+    font-weight: bold;
+    font-style: italic;    
+}
+ 
+.contenido {
+    width: 90%;
+    max-width: 1200px;
+    margin: 30px auto;
+
+    background-color: rgba(255, 255, 255, 0.637);
+    border-radius: 15px;
+    padding: 20px;    
+}
+
+.nivel {
+    background: rgba(0, 0, 0, 0.459);
+    padding: 20px;
+    border-radius: 20px;
+}
+
+.niveles {
+    padding: 8px;
+    font-style: 18px;    
+}
+
+.panel {
+    display: flex;
+    gap: 20px;    
+}
+
+.tablero {
+    flex: 3;
+    min-height: 500px;
+    background: rgba(43, 135, 177, 0.644);
+    border-radius: 15px;
+    padding: 20px;
+}
+
+.raking {
+    flex: 1;
+    background: cielblue;
+    border-radius: 15px;
+    padding: 15px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 8px;
+    text-align: center;
+    border-bottom: 1px solid rgba(4, 110, 93, 0.74);
+}
+
+.cronometro {
+    margin-top: 20px;
+    background: rgba(255, 166, 0, 0.644);
+    border-radius: 15px;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#tiempo {
+    font-size: 40px;
+    font-weight: bold;
+}
+
+.botones button {
+    width: 60px;
+    height: 60px;
+    font-size: 25px;
+    margin-left: 10px;
+    cursor: pointer;
+}

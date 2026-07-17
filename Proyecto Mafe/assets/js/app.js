@@ -48,6 +48,8 @@ function changesImg(img) {
     if(bloqueado) return;
     if(img === primera) return;
 
+    if (!img.src.includes("Reverso.webp")) return;
+
     if(estado!== "corriendo" &&estado != "corriendo"){
         iniciarCronometro ();
     }

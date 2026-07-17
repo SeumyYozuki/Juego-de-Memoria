@@ -2,13 +2,16 @@
 // Iniciar Juego
 // =======================
 
-
-// Logica del juego
-
 // Boton Inicio
 
 const btnStart = document.getElementById("btn-start");
 btnStart.addEventListener("click", startGame);
+
+// Logica del juego
+
+let primera = null;
+let segunda = null;
+let bloqueado = false;
 
 //Funciones
 
@@ -42,10 +45,39 @@ function startGame(){
 function changesImg(img) {
     console.log(img.dataset.src);
 
+    if(bloqueado) return;
+    if(img === primera) return;
     let newUrl = "./assets/images/" + img.dataset.src;
+    img.src = newUrl;
     console.log(newUrl);
 
-    img.src = newUrl;
+    if (primera == null){
+        primera = img;
+        return;
+    }
+
+    segunda = img;
+    
+    comparar();    
+}
+
+function comparar(){
+    if (primera.dataset.src === segunda.dataset.src) {
+        primera = null;
+        segunda = null;
+    } else { 
+        bloqueado = true;
+        setTimeout (() => {
+            primera.src = "./assets/images/Reverso.webp";
+            segunda.src = "./assets/images/Reverso.webp";
+
+            primera = null;
+            segunda = null;
+
+            bloqueado = false;
+
+        }, 1000)
+    }
 }
 
 // =======================

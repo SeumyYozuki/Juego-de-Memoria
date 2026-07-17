@@ -14,16 +14,19 @@
                 <h1 class="Titulo">Memory Game</h1>
                 <h2 class="Subtitulo">by: Seumy 🙂</h2> 
 
-                <section class="info">                  
+                <section class="controles">                  
                     <div class="nivel">
-                        <label>Nivel</label>
-                        <select id="niveles">
-                            <optionvalue="">Selecciona un nivel</option>
+                        <label for="levelGame">Seleccione Nivel</label>
+                        <select name="" id="levelGame">
+                            <option value="" disabled selected >Selecciona un nivel</option>
                             <option value="4">Fácil</option>
                             <option value="6">Medio</option>
                             <option value="8">Difícil</option>
                             <option value="10">Experto</option>
                         </select>
+                        
+                        <button class="btn-start" id="btn-start" onclick="startGame() "> Start</button>
+                        
                     </div>
                 </section>
                 
@@ -38,6 +41,11 @@
 
                 <section class="panel">
                      <section class="tablero">
+
+                        <div class= "grid-cards" id="grid-cards">
+                            <label class="viewLoad">Load. . .</label>
+                            
+                        </div>
 
                      </section>
 

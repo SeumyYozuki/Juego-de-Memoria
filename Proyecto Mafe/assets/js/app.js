@@ -100,16 +100,27 @@ btnReiniciar.addEventListener("click", reiniciarCronometro);
 actualizarCronometro();
 
 // =======================
-// TABLERO Y CARTAS
+// Iniciar Juego
 // =======================
 
-const tablero= document.querySelector(".tablero");
-
-for (let i = 0; i < 8; i++) {
-    const carta = document.createElement("img");
-    carta.src = "assets/images/Reverso.webp";
-    tablero.appendChild(carta);
+function startGame() {    
+    const selectlevel = document.getElementById('levelGame');
+    const cardsContainer = document.getElementById('grid-cards');
+    let levelGame = selectlevel.value;
+    
+    if (levelGame != ""){
+        cardsContainer.innerHTML ="";
+        changesImg(levelGame,cardsContainer);
+    }
 }
 
-
+function changesImg(level, cardsContainer) {
+    const arrayImg = ['Bayonetta.webp', 'Bowser.webp', 'Capitan Falcon.webp', 'Duck Hunt.webp', 'Fox.webp', 'Ivysaur.webp', 'Jigglypuff.webp', 'King Dedede.webp', 'Kirby.webp', 'Link.webp', 'Luigy.webp', 'Mega Man.webp', 'Mr. Game.webp', 'Pac-Man.webp', 'Pikachu.webp', 'Pit.webp', 'Ryu.webp', 'Samus.webp', 'Sonic.webp', 'Steve.webp'];
+    let textElements= '';
+    
+    for (let i = 0; i < level; i++) {
+        textElements +='<div class="item"><img onclick="validateSelectCard(this)" src="assets/images/' +arrayImg[i]+'" data-src="'+arrayImg[i]+'" alt=""></div>';;
+    }
+    cardsContainer.innerHTML = textElements;
+}
 

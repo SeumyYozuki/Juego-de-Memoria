@@ -35,11 +35,6 @@ body{
     border-radius: 20px;
 }
 
-.niveles {
-    padding: 8px;
-    font-style: 18px;    
-}
-
 .panel {
     display: flex;
     gap: 20px;    

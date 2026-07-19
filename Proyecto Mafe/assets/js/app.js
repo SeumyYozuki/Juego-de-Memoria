@@ -1,45 +1,71 @@
-// =======================
-// Iniciar Juego
-// =======================
-
-// Boton Inicio
-
-const btnStart = document.getElementById("btn-start");
-btnStart.addEventListener("click", startGame);
-
-// Logica del juego
+// ================================
+// VARIABLES GLOBALES DEL JUEGO
+// ================================
 
 let primera = null;
 let segunda = null;
 let bloqueado = false;
 
-//Funciones
+let parejasEncontradas = 0;
+let totalParejas = 0;
+
+let tiempo = 0;
+let intervalo = null;
+let estado = "detenido"; 
+
+const btnStart = document.getElementById("btn-start");
+const cronometro = document.getElementById("tiempo");
+const btnIniciar = document.getElementById("iniciar");
+const btnPausar = document.getElementById("pausar");
+const btnReiniciar = document.getElementById("reiniciar");
+
+btnStart.addEventListener("click", startGame);
+
+// ==========================================
+// LÓGICA DEL JUEGO (MEMORAMA)
+// ==========================================
 
 function startGame(){    
     const selectlevel = document.getElementById('levelGame');
     const cardsContainer = document.getElementById('tablero');
    
     let levelGame = selectlevel.value;
-    let longCards = levelGame;
-    const imgText = '<div class="items"><img src="assets/images/Reverso.webp" alt=""></div>' 
-    let contCards = "";
-    let arrayImg =['img_1.webp', 'img_2.webp', 'img_3.webp', 'img_4.webp', 'img_5.webp', 'img_6.webp', 'img_7.webp', 'img_8.webp', 'img_9.webp', 'img_10.webp', 'img_11.webp', 'img_12.webp', 'img_13.webp', 'img_14.webp', 'img_15.webp', 'img_16.webp', 'img_17.webp', 'img_18.webp', 'img_19.webp', 'img_20.webp',]   
+    
+    if(!levelGame || levelGame === "") {
+        alert("Por favor, selecciona un nivel primero.");
+        return;
+    }
 
-    arrayImg.sort(() => Math.random()- 0.5);
-    let seleccion = arrayImg.slice(0, levelGame);
+    let numParejas = parseInt(levelGame); 
+    
+    parejasEncontradas = 0; 
+    totalParejas = numParejas; 
+    
+    detenerCronometro();
+    tiempo = 0;
+    actualizarCronometro();
+
+    let contCards = "";
+    let arrayImg = [
+        'img_1.webp', 'img_2.webp', 'img_3.webp', 'img_4.webp', 'img_5.webp', 
+        'img_6.webp', 'img_7.webp', 'img_8.webp', 'img_9.webp', 'img_10.webp', 
+        'img_11.webp', 'img_12.webp', 'img_13.webp', 'img_14.webp', 'img_15.webp', 
+        'img_16.webp', 'img_17.webp', 'img_18.webp', 'img_19.webp', 'img_20.webp'
+    ];   
+
+    arrayImg.sort(() => Math.random() - 0.5);
+    
+    let seleccion = arrayImg.slice(0, numParejas);
+    
     let cartas = seleccion.concat(seleccion);
 
     cartas.sort(() => Math.random() - 0.5);
 
-    if(levelGame !=""){
-        console.log(levelGame);
-
-        for (let i=0; i < levelGame * 2; i++) {
-            contCards += crearCarta(cartas[i], i+1);
-        }
-
-        cardsContainer.innerHTML = contCards;
+    for (let i = 0; i < numParejas * 2; i++) {
+        contCards += crearCarta(cartas[i], i + 1);
     }
+
+    cardsContainer.innerHTML = contCards;
 }
 
 function changesImg(img) {
@@ -50,8 +76,8 @@ function changesImg(img) {
 
     if (!img.src.includes("Reverso.webp")) return;
 
-    if(estado!== "corriendo" &&estado != "corriendo"){
-        iniciarCronometro ();
+    if(estado !== "corriendo"){
+        iniciarCronometro();
     }
 
     let newUrl = "./assets/images/" + img.dataset.src;
@@ -68,45 +94,20 @@ function changesImg(img) {
     comparar();    
 }
 
-function pausarCronometro() {
-    if (estado === "corriendo") {
-        clearInterval(intervalo);
-        estado = "pausado";
-
-        bloqueado = true; 
-    }
-    mostrarEstado();
-}
-
-function iniciarCronometro() {
-    if (estado !== "corriendo") {
-        estado = "corriendo";
-        
-        bloqueado = false; 
-
-        intervalo = setInterval(() => {
-            tiempo++;
-            actualizarCronometro();
-        }, 1000);
-    }
-    mostrarEstado();
-}
-
-function reiniciarCronometro() {
-    detenerCronometro();
-    tiempo = 0;
-    actualizarCronometro();
-    estado = "detenido";
-
-    startGame(); 
-    
-    mostrarEstado();
-}
-
 function comparar(){
     if (primera.dataset.src === segunda.dataset.src) {
+        parejasEncontradas++;
+        
         primera = null;
         segunda = null;
+
+        if (parejasEncontradas === totalParejas) {
+            detenerCronometro();
+            
+            setTimeout(() => {
+                finalizarPartida();
+            }, 500);
+        }
     } else { 
         bloqueado = true;
         setTimeout (() => {
@@ -117,118 +118,87 @@ function comparar(){
             segunda = null;
 
             bloqueado = false;
-
         }, 1000)
     }
 }
 
-// =======================
-// CRONÓMETRO
-// =======================
+function finalizarPartida() {
+    const nombreJugador = prompt("¡Felicidades! Has completado el tablero. Ingresa tu nombre para guardar tu récord en el Top 10:");
+    
+    if (nombreJugador && nombreJugador.trim() !== "") {
+        const selectlevel = document.getElementById('levelGame');
+        const textoNivel = selectlevel.options[selectlevel.selectedIndex].text;
 
-let tiempo = 0;
-let intervalo = null;
-let estado = "detenido"; 
+        checkAndSaveScore(nombreJugador.trim(), tiempo, textoNivel);
+    } else {
+        alert("Partida terminada. Tu tiempo no fue registrado porque no ingresaste un nombre.");
+    }
+}
 
-// Elementos del HTML
-const cronometro = document.getElementById("tiempo");
-const btnIniciar = document.getElementById("iniciar");
-const btnPausar = document.getElementById("pausar");
-const btnReiniciar = document.getElementById("reiniciar");
+// ==========================================
+// LÓGICA DEL CRONÓMETRO
+// ==========================================
 
-// Actualizar el cronómetro
 function actualizarCronometro() {
-
     let horas = Math.floor(tiempo / 3600);
-    let minutos = Math.floor((tiempo % 3600) / 60);
+    let minutes = Math.floor((tiempo % 3600) / 60);
     let segundos = tiempo % 60;
 
     let hh = horas.toString().padStart(2, "0");
-    let mm = minutos.toString().padStart(2, "0");
+    let mm = minutes.toString().padStart(2, "0");
     let ss = segundos.toString().padStart(2, "0");
 
     cronometro.textContent = `${hh}:${mm}:${ss}`;
 }
 
-// Iniciar
 function iniciarCronometro() {
-
     if (estado !== "corriendo") {
-
         estado = "corriendo";
+        bloqueado = false; 
 
         intervalo = setInterval(() => {
-
             tiempo++;
-
             actualizarCronometro();
-
         }, 1000);
-
     }
-
     mostrarEstado();
 }
 
-// Pausar
 function pausarCronometro() {
-
     if (estado === "corriendo") {
-
         clearInterval(intervalo);
-
         estado = "pausado";
-
+        bloqueado = true; 
     }
-
     mostrarEstado();
 }
 
-// Detener
 function detenerCronometro() {
-
     clearInterval(intervalo);
-
     estado = "detenido";
-
     mostrarEstado();
 }
 
-// Reiniciar
 function reiniciarCronometro() {
-
     detenerCronometro();
-
     tiempo = 0;
-
     actualizarCronometro();
-
     estado = "reiniciado";
-
     mostrarEstado();
 
     primera = null;
     segunda = null;
     bloqueado = false;
+    
     startGame();
 }
 
-// Mostrar estado en consola
 function mostrarEstado() {
-
     console.log("Estado actual: " + estado);
-
 }
 
-// Eventos de los botones
 btnIniciar.addEventListener("click", iniciarCronometro);
 btnPausar.addEventListener("click", pausarCronometro);
 btnReiniciar.addEventListener("click", reiniciarCronometro);
 
-// Mostrar 00:00:00 al abrir la página
 actualizarCronometro();
-
-
-
-
-

@@ -1,0 +1,184 @@
+/* --- Estilos Base y Layout --- */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #eef2f3;
+    margin: 0;
+    padding: 20px;
+    color: #333;
+}
+
+.main-title {
+    text-align: center;
+    color: #2c3e50;
+    margin-bottom: 30px;
+}
+
+.dashboard {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.card-demo {
+    background: white;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.btn-group {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 25px;
+}
+
+button {
+    background-color: #3498db;
+    color: white;
+    border: none;
+    padding: 10px 16px;
+    font-size: 14px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.1s;
+}
+
+button:hover { background-color: #2980b9; }
+button:active { transform: scale(0.95); }
+
+.box-container {
+    width: 100%;
+    height: 180px;
+    border: 2px dashed #bdc3c7;
+    border-radius: 8px;
+    position: relative;
+    background-color: #fafafa;
+    overflow: hidden;
+}
+
+.centralize {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    padding-bottom: 10px;
+}
+
+/* --- DEMO 1: CSS para Mostrar/Ocultar (Fade) --- */
+.box {
+    width: 80%;
+    margin: 30px auto;
+    padding: 20px;
+    border-radius: 6px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.alert-box {
+    background-color: #2ecc71;
+    color: white;
+    /* Estado inicial: visible y opaco */
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+/* Clase que inyectará JS para ocultar suavemente */
+.alert-box.is-hidden {
+    opacity: 0;
+    visibility: hidden;
+}
+
+/* --- DEMO 2: CSS para Movimiento y Giro 3D de Carta --- */
+.card-scene {
+    perspective: 600px; /* Necesario para el efecto 3D */
+}
+
+.card {
+    width: 80px;
+    height: 120px;
+    position: absolute;
+    left: 20px;
+    top: 30px;
+    transform-style: preserve-3d;
+    /* Transición combinada para posición (transform) y rotación */
+    transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* Estado: Movido a la derecha */
+.card.is-moved {
+    transform: translateX(160px); 
+}
+
+/* Estado: Girado (Back-face flipper) */
+.card.is-flipped {
+    transform: rotateY(180deg);
+}
+
+/* Estado: Movido Y Girado al mismo tiempo */
+.card.is-moved.is-flipped {
+    transform: translateX(160px) rotateY(180deg);
+}
+
+/* Caras de la carta */
+.card-face {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden; /* Oculta la cara opuesta al girar */
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    font-weight: bold;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+.card-front {
+    background: white;
+    color: #e74c3c;
+    border: 2px solid #e74c3c;
+}
+
+.card-back {
+    background: #2c3e50;
+    color: white;
+    transform: rotateY(180deg); /* Volteada por defecto */
+    font-size: 14px;
+}
+
+/* --- DEMO 3: CSS Animación por Keyframes (Rebote) --- */
+.ball {
+    width: 40px;
+    height: 40px;
+    background-color: #e67e22;
+    border-radius: 50%;
+    /* Posición abajo en el contenedor contenedor centralize */
+}
+
+/* Clase con la animación asignada que activará JS */
+.animate-bounce {
+    animation: bounceEffect 0.9s ease-in-out;
+}
+
+/* Definición de los fotogramas clave (Keyframes) */
+@keyframes bounceEffect {
+    0%, 100% {
+        transform: translateY(0) scaleY(1);
+    }
+    30% {
+        transform: translateY(-110px) scaleY(1.05); /* Sube y se estira levemente */
+    }
+    70% {
+        transform: translateY(-30px) scaleY(1);
+    }
+    90% {
+        transform: translateY(0) scaleY(0.85); /* Aplastamiento contra el suelo */
+    }
+}

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Laboratorio de Animaciones CSS3 & JS</title>
+    <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+
+    <h1 class="main-title">Laboratorio de Animaciones</h1>
+
+    <div class="dashboard">
+        
+        <!-- DEMO 1: MOSTRAR Y OCULTAR (FADE) -->
+        <div class="card-demo">
+            <h3>1. Mostrar / Ocultar (Fade)</h3>
+            <p>Usa opacidad y visibilidad para transiciones suaves.</p>
+            <div class="btn-group">
+                <button id="btn-toggle-fade">Alternar Elemento</button>
+            </div>
+            <div class="box-container">
+                <div id="fade-box" class="box alert-box">¡Sorpresa! Soy un elemento.</div>
+            </div>
+        </div>
+
+        <!-- DEMO 2: MOVIMIENTO Y GIRO DE CARTA -->
+        <div class="card-demo">
+            <h3>2. Animación de Carta</h3>
+            <p>Desplazamiento en el espacio y efecto 3D al girar.</p>
+            <div class="btn-group">
+                <button id="btn-move-card">Mover / Regresar</button>
+                <button id="btn-flip-card">Girar Carta</button>
+            </div>
+            <div class="box-container card-scene">
+                <div id="poker-card" class="card">
+                    <div class="card-face card-front">♠️ A</div>
+                    <div class="card-face card-back">♦️♣️♥️♠️</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- DEMO 3: EFECTO REBOTE (KEYFRAMES) -->
+        <div class="card-demo">
+            <h3>3. Efecto Rebote (Bounce)</h3>
+            <p>Animación basada en fotogramas clave (@keyframes).</p>
+            <div class="btn-group">
+                <button id="btn-bounce">¡Rebotar!</button>
+            </div>
+            <div class="box-container centralize">
+                <div id="ball" class="ball"></div>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="assets/js/app.js"></script>
+</body>
+</html>
